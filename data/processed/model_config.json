@@ -1,0 +1,104 @@
+{
+  "bins": {
+    "bm": {
+      "edges": [
+        -1,
+        0,
+        3,
+        7,
+        11,
+        22
+      ],
+      "labels": [
+        "0",
+        "1-3",
+        "4-7",
+        "8-11",
+        "12+"
+      ]
+    },
+    "power": {
+      "edges": [
+        0,
+        40,
+        50,
+        60,
+        70,
+        80,
+        243
+      ],
+      "labels": [
+        "<=40",
+        "41-50",
+        "51-60",
+        "61-70",
+        "71-80",
+        "80+"
+      ]
+    },
+    "ageph": {
+      "edges": [
+        17,
+        25,
+        30,
+        35,
+        40,
+        50,
+        60,
+        70,
+        80,
+        95
+      ],
+      "labels": [
+        "18-25",
+        "26-30",
+        "31-35",
+        "36-40",
+        "41-50",
+        "51-60",
+        "61-70",
+        "71-80",
+        "81+"
+      ]
+    },
+    "agec": {
+      "edges": [
+        -1,
+        1,
+        3,
+        5,
+        8,
+        12,
+        48
+      ],
+      "labels": [
+        "0-1",
+        "2-3",
+        "4-5",
+        "6-8",
+        "9-12",
+        "13+"
+      ]
+    }
+  },
+  "territory_labels": {
+    "1": "1xxx - Brussels/Walloon-Brabant",
+    "2": "2xxx - Antwerp",
+    "3": "3xxx - Flemish Brabant",
+    "4": "4xxx - Li\u00e8ge",
+    "5": "5xxx - Namur",
+    "6": "6xxx - Hainaut/Luxembourg",
+    "7": "7xxx - Hainaut",
+    "8": "8xxx - West Flanders",
+    "9": "9xxx - East Flanders"
+  },
+  "base_rates": {
+    "frequency": 0.2300979396344882,
+    "severity": 1934.0405303604816
+  },
+  "expense_loadings": {
+    "fixed_expense": 60.0,
+    "variable_expense_ratio": 0.25,
+    "profit_contingency_loading": 0.05
+  }
+}
