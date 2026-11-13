@@ -4,10 +4,10 @@
 # and export it to CSV, without installing/compiling the full package.
 #
 # Usage:
-#   Rscript tools/fetch_cas_dataset.R <dataset_name> <output_csv_path>
+#   Rscript src/fetch_cas_dataset.R <dataset_name> <output_csv_path>
 #
 # Example:
-#   Rscript tools/fetch_cas_dataset.R beMTPL97 .tmp/beMTPL97.csv
+#   Rscript src/fetch_cas_dataset.R beMTPL97 data/raw/beMTPL97.csv
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 2) {
@@ -17,7 +17,7 @@ dataset_name <- args[1]
 output_csv <- args[2]
 
 repo_tarball_url <- "http://dutangc.perso.math.cnrs.fr/RRepository/pub/src/contrib/CASdatasets_1.2-1.tar.gz"
-cache_dir <- file.path(dirname(dirname(normalizePath(sub("--file=", "", grep("--file=", commandArgs(trailingOnly = FALSE), value = TRUE)[1])))), ".tmp")
+cache_dir <- file.path(dirname(dirname(normalizePath(sub("--file=", "", grep("--file=", commandArgs(trailingOnly = FALSE), value = TRUE)[1])))), "data", "raw")
 if (!dir.exists(cache_dir)) dir.create(cache_dir, recursive = TRUE)
 cached_tarball <- file.path(cache_dir, "CASdatasets_1.2-1.tar.gz")
 

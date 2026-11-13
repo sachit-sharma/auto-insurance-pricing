@@ -28,17 +28,17 @@ bins, a refit), re-run the notebook end to end so the two export cells
 (just before "## Example of calculating gross premiums") pick up the new
 `final_model`, `severity_model`, `freq_rating`, `sev_rating`, and bin
 variables, and rewrite:
-- `.tmp/freq_rating_table.csv` — columns `variable, level, reference, coef, relativity, p_value, significant`
-- `.tmp/sev_rating_table.csv` — same columns, one extra variable (`use`)
-- `.tmp/model_config.json` — bin edges/labels for `bm`/`power`/`ageph`/`agec`, the 9 territory labels, `base_rates.{frequency,severity}` (`exp(Intercept)` for each model), and `expense_loadings.{fixed_expense,variable_expense_ratio,profit_contingency_loading}`
+- `data/processed/freq_rating_table.csv` — columns `variable, level, reference, coef, relativity, p_value, significant`
+- `data/processed/sev_rating_table.csv` — same columns, one extra variable (`use`)
+- `data/processed/model_config.json` — bin edges/labels for `bm`/`power`/`ageph`/`agec`, the 9 territory labels, `base_rates.{frequency,severity}` (`exp(Intercept)` for each model), and `expense_loadings.{fixed_expense,variable_expense_ratio,profit_contingency_loading}`
 
 From the command line (equivalent to Run All in the kernel):
 ```bash
-conda run -n base jupyter nbconvert --to notebook --execute --inplace "pricing_project.ipynb"
+conda run -n base jupyter nbconvert --to notebook --execute --inplace "notebooks/pricing_project.ipynb"
 ```
 
 These three files are regenerable intermediates, not deliverables — treat
-them like everything else in `.tmp/`.
+them like everything else in `data/`.
 
 ## Step 2: install dependencies (one-time)
 ```bash
@@ -51,16 +51,16 @@ refits anything.
 ## Step 3: launch the app
 ```bash
 cd "/Users/sachitsharma/Downloads/Projects-Actuary/Auto Insurance Pricing"
-conda run -n base streamlit run tools/streamlit_app.py
+conda run -n base streamlit run app/streamlit_app.py
 ```
 Opens at `http://localhost:8501`. Sliders/dropdowns are in the sidebar;
 the four headline numbers (Frequency, Severity, Pure Premium, Gross
 Premium) update live, and two expanders show the exact rating-table rows
 used and the full rating tables.
 
-## Tools
-- `tools/premium_calculator.py` — `calculate_premium(age, bonus_malus, horsepower, vehicle_age, territory_label, fuel, use)` → dict with bins used, any clipped inputs, and all four predicted values. Clips out-of-range numeric inputs to the training range rather than erroring; raises `ValueError` for an invalid `territory_label`/`fuel`/`use` (the app's dropdowns prevent this in practice).
-- `tools/streamlit_app.py` — thin UI layer over `premium_calculator`.
+## Code
+- `src/premium_calculator.py` — `calculate_premium(age, bonus_malus, horsepower, vehicle_age, territory_label, fuel, use)` → dict with bins used, any clipped inputs, and all four predicted values. Clips out-of-range numeric inputs to the training range rather than erroring; raises `ValueError` for an invalid `territory_label`/`fuel`/`use` (the app's dropdowns prevent this in practice).
+- `app/streamlit_app.py` — thin UI layer over `premium_calculator`.
 
 ## Gross premium formula
 ```

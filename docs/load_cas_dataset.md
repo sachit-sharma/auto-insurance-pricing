@@ -10,7 +10,7 @@ installing/compiling the full R package.
 source tarball that needs compilation (`NeedsCompilation: yes`) to install
 normally. We don't need the compiled package, just the data: each dataset is
 a plain `.rda` file inside `CASdatasets/data/` in that tarball. We download
-the tarball once (cached in `.tmp/`), extract only the requested `.rda`,
+the tarball once (cached in `data/raw/`), extract only the requested `.rda`,
 load it with R's `load()`, and write it straight to CSV.
 
 ## Required inputs
@@ -22,26 +22,26 @@ load it with R's `load()`, and write it straight to CSV.
   documented schema.
 
 ## Tool to use
-`tools/fetch_cas_dataset.R <dataset_name> <output_csv_path>`
+`src/fetch_cas_dataset.R <dataset_name> <output_csv_path>`
 
 Requires R (`Rscript`) on PATH. No R packages beyond base R are needed since
 we load the `.rda` directly rather than installing `CASdatasets`.
 
 Example:
 ```bash
-Rscript tools/fetch_cas_dataset.R beMTPL97 .tmp/beMTPL97.csv
+Rscript src/fetch_cas_dataset.R beMTPL97 data/raw/beMTPL97.csv
 ```
 
 Then in the notebook / Python:
 ```python
 import pandas as pd
-df = pd.read_csv(".tmp/beMTPL97.csv")
+df = pd.read_csv("data/raw/beMTPL97.csv")
 ```
 
 ## Source
 - Repo: `http://dutangc.perso.math.cnrs.fr/RRepository/`
 - Tarball: `http://dutangc.perso.math.cnrs.fr/RRepository/pub/src/contrib/CASdatasets_1.2-1.tar.gz`
-- Cached locally at `.tmp/CASdatasets_1.2-1.tar.gz` after first run (the tool
+- Cached locally at `data/raw/CASdatasets_1.2-1.tar.gz` after first run (the tool
   reuses this cache instead of re-downloading).
 
 ## Known datasets used in this project

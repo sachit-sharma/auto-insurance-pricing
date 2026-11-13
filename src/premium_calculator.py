@@ -1,7 +1,7 @@
 """Reconstructs frequency, severity, pure premium, and gross premium for a single
 policy from the exported rating-table artifacts, without needing statsmodels.
 
-Artifacts (produced by the notebook's export cells, under .tmp/):
+Artifacts (produced by the notebook's export cells, under data/processed/):
   - freq_rating_table.csv, sev_rating_table.csv: per-level relativities
   - model_config.json: bin edges/labels, territory labels, base rates, expense loadings
 """
@@ -11,9 +11,9 @@ from pathlib import Path
 import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-CONFIG_PATH = PROJECT_ROOT / ".tmp" / "model_config.json"
-FREQ_RATING_PATH = PROJECT_ROOT / ".tmp" / "freq_rating_table.csv"
-SEV_RATING_PATH = PROJECT_ROOT / ".tmp" / "sev_rating_table.csv"
+CONFIG_PATH = PROJECT_ROOT / "data" / "processed" / "model_config.json"
+FREQ_RATING_PATH = PROJECT_ROOT / "data" / "processed" / "freq_rating_table.csv"
+SEV_RATING_PATH = PROJECT_ROOT / "data" / "processed" / "sev_rating_table.csv"
 
 FREQ_VARS = ["bm_bin", "power_bin", "ageph_bin", "agec_bin", "fuel", "territory"]
 SEV_VARS = ["bm_bin", "power_bin", "ageph_bin", "agec_bin", "fuel", "use", "territory"]

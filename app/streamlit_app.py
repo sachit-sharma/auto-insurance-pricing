@@ -1,15 +1,15 @@
 """Gross-premium estimator dashboard.
 
-Launch with: streamlit run tools/streamlit_app.py  (from the project root,
+Launch with: streamlit run app/streamlit_app.py  (from the project root,
 after `pip install streamlit` into the env that has pandas — see
-workflows/streamlit_dashboard.md)
+docs/streamlit_dashboard.md)
 """
 import sys
 from pathlib import Path
 
 import streamlit as st
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 import premium_calculator as pc
 
 st.set_page_config(page_title="Auto Insurance Pricing", page_icon="🚗")
@@ -25,8 +25,8 @@ try:
     config, freq_rating, sev_rating = get_artifacts()
 except FileNotFoundError:
     st.error(
-        "Rating-table artifacts not found under `.tmp/`. Run the notebook's export "
-        "cells (see workflows/streamlit_dashboard.md) before launching this app."
+        "Rating-table artifacts not found under `data/processed/`. Run the notebook's "
+        "export cells (see docs/streamlit_dashboard.md) before launching this app."
     )
     st.stop()
 

@@ -6,15 +6,15 @@ them as a small GeoJSON for mapping.
 Natural Earth only digitizes admin-1 boundaries for a handful of large
 countries at 50m resolution (US, Canada, Brazil, Russia, etc.) - small
 countries like Belgium only appear in the 10m dataset. We download the full
-10m admin-1 shapefile once (~15MB, cached in .tmp/), filter to Belgium, and
+10m admin-1 shapefile once (~15MB, cached in data/raw/), filter to Belgium, and
 write out an 11-feature GeoJSON (10 provinces + Brussels-Capital) so later
 reads are instant and don't require geopandas to re-parse the global file.
 
 Usage:
-    python3 tools/fetch_belgium_provinces.py [output_geojson_path]
+    python3 src/fetch_belgium_provinces.py [output_geojson_path]
 
 Example:
-    python3 tools/fetch_belgium_provinces.py .tmp/belgium_provinces.geojson
+    python3 src/fetch_belgium_provinces.py data/raw/belgium_provinces.geojson
 """
 import sys
 from pathlib import Path
@@ -25,7 +25,7 @@ import geopandas as gpd
 NATURAL_EARTH_URL = "https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_1_states_provinces.zip"
 
 repo_root = Path(__file__).resolve().parent.parent
-cache_dir = repo_root / ".tmp"
+cache_dir = repo_root / "data" / "raw"
 cache_dir.mkdir(exist_ok=True)
 cached_zip = cache_dir / "ne_10m_admin_1_states_provinces.zip"
 
